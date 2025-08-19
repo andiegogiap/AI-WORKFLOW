@@ -1,0 +1,5 @@
+{
+  "name": "AIWV-AI Workflow Visualizer",
+  "description": "An interactive application that takes a text-based workflow or project plan and uses the Gemini API to parse and display it as a structured, visual Kanban-style board. Users can track progress by marking tasks as complete.",
+  "requestFramePermissions": []
+}
