@@ -115,10 +115,10 @@ const App: React.FC = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-slate-900 text-slate-100 font-sans p-4 sm:p-6 lg:p-8">
+      <div className="min-h-screen font-sans p-4 sm:p-6 lg:p-8 text-slate-100">
         <div className="max-w-7xl mx-auto">
           <header className="text-center mb-8">
-            <h1 className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">
+            <h1 className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 drop-shadow-[0_0_8px_rgba(0,229,255,0.5)]">
               AI Workflow Visualizer
             </h1>
             <p className="mt-2 text-slate-400">
@@ -126,18 +126,18 @@ const App: React.FC = () => {
             </p>
           </header>
 
-          <div className="bg-slate-800 rounded-lg p-6 shadow-2xl mb-8">
+          <div className="glass p-6 mb-8">
             <textarea
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
-              className="w-full h-48 p-4 bg-slate-900 border border-slate-700 rounded-md focus:ring-2 focus:ring-cyan-500 focus:outline-none transition duration-200 resize-y text-slate-300"
+              className="w-full h-48 p-4 bg-slate-900/70 border border-slate-700 rounded-md focus:ring-2 focus:ring-cyan-500 focus:outline-none transition duration-200 resize-y text-slate-300 placeholder-slate-500"
               placeholder="Paste your workflow text here..."
             />
             <div className="mt-4 flex justify-end">
               <button
                 onClick={handleProcessWorkflow}
                 disabled={isLoading}
-                className="px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-md hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity duration-200 shadow-lg"
+                className="px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-md hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-cyan-500/50"
               >
                 {isLoading ? 'Processing...' : 'Visualize Workflow'}
               </button>
@@ -145,11 +145,11 @@ const App: React.FC = () => {
           </div>
 
           {isLoading && <Loader />}
-          {error && <div className="text-center text-red-400 bg-red-900/20 p-4 rounded-md">{error}</div>}
+          {error && <div className="text-center text-red-400 bg-red-900/20 p-4 rounded-md glass">{error}</div>}
 
           {workflowData && (
             <div>
-              <div className="mb-6 bg-slate-800 p-4 rounded-lg shadow-lg">
+              <div className="mb-6 glass p-4">
                   <div className="flex flex-wrap justify-between items-center mb-2 gap-2">
                       <h2 className="text-lg font-semibold text-slate-200">Project Progress</h2>
                       <div className="flex items-center gap-4">

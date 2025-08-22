@@ -37,7 +37,7 @@ const SuggestionItem: React.FC<{
 
     return (
         <div
-            className={`p-3 rounded-lg cursor-pointer transition-all duration-200 relative ${isSelected ? 'bg-cyan-900/50 ring-2 ring-cyan-500' : 'bg-slate-700/50 hover:bg-slate-700'}`}
+            className={`p-3 rounded-lg cursor-pointer transition-all duration-200 relative glass glass-subtle ${isSelected ? 'ring-2 ring-cyan-500' : 'hover:bg-slate-700/50'}`}
             onClick={() => onToggle(suggestion.title)}
         >
             <div className="flex items-start pr-20">
@@ -130,8 +130,8 @@ const SuggestionModal: React.FC<SuggestionModalProps> = ({ isOpen, onClose, onAp
 
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-slate-800 rounded-lg shadow-2xl w-full max-w-2xl border border-slate-700 flex flex-col">
-        <header className="flex justify-between items-center p-4 border-b border-slate-700">
+      <div className="glass glass-strong w-full max-w-2xl flex flex-col">
+        <header className="flex justify-between items-center p-4 border-b border-slate-700/50">
           <h2 className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 capitalize">{title}</h2>
           <button onClick={onClose} className="text-slate-400 hover:text-white">&times;</button>
         </header>
@@ -139,7 +139,7 @@ const SuggestionModal: React.FC<SuggestionModalProps> = ({ isOpen, onClose, onAp
             {renderContent()}
         </main>
         {!isLoading && !error && suggestions.length > 0 && (
-            <footer className="flex justify-end p-4 border-t border-slate-700 bg-slate-800/50 rounded-b-lg">
+            <footer className="flex justify-end p-4 border-t border-slate-700/50 bg-slate-900/30 rounded-b-lg">
                 <button onClick={onClose} className="px-4 py-2 text-slate-300 font-semibold rounded-md hover:bg-slate-700 transition-colors">
                     Cancel
                 </button>

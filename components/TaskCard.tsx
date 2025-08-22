@@ -13,9 +13,9 @@ interface TaskCardProps {
 type ElaborationTarget = 'activity' | 'considerations' | 'output';
 
 const statusColors: { [key in TaskStatus]: { border: string, bg: string, text: string } } = {
-  'To Do': { border: 'border-cyan-500', bg: 'bg-cyan-500/10', text: 'text-cyan-400' },
-  'In Progress': { border: 'border-yellow-500', bg: 'bg-yellow-500/10', text: 'text-yellow-400' },
-  'Done': { border: 'border-green-500', bg: 'bg-green-500/10', text: 'text-green-400' },
+  'To Do': { border: 'border-cyan-500', bg: 'bg-cyan-900/50', text: 'text-cyan-400' },
+  'In Progress': { border: 'border-yellow-500', bg: 'bg-yellow-900/50', text: 'text-yellow-400' },
+  'Done': { border: 'border-green-500', bg: 'bg-green-900/50', text: 'text-green-400' },
 };
 
 const InfoSection: React.FC<{ title: string; content: string; icon: React.ReactNode; onExpand: () => void; }> = ({ title, content, icon, onExpand }) => {
@@ -41,7 +41,7 @@ const InfoSection: React.FC<{ title: string; content: string; icon: React.ReactN
     return (
         <div>
             <div className="flex justify-between items-center">
-                <h4 className="flex items-center text-sm font-semibold text-slate-300 mb-1">
+                <h4 className="flex items-center text-sm font-semibold text-slate-300 mb-1 uppercase tracking-wider">
                     {icon}
                     <span className="ml-2">{title}</span>
                 </h4>
@@ -55,7 +55,7 @@ const InfoSection: React.FC<{ title: string; content: string; icon: React.ReactN
             <div className="text-slate-400 text-sm pl-6 whitespace-pre-wrap">
                 {originalContent}
                 {suggestionsContent && (
-                    <blockquote className="mt-4 p-4 bg-slate-900/50 border-l-4 border-cyan-500 rounded-r-md text-slate-300">
+                    <blockquote className="mt-4 p-4 glass glass-subtle border-l-4 border-cyan-500 rounded-r-md text-slate-300">
                         {suggestionsContent.split('\n').map((line, index) => {
                             const cleanLine = line.startsWith('> ') ? line.substring(2) : (line.startsWith('>') ? line.substring(1) : line);
                             return (
@@ -164,7 +164,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ step, onUpdate, onAddNote, phaseTit
   return (
     <>
       <div
-        className={`relative bg-slate-800 rounded-lg shadow-md p-4 border-l-4 transition-all duration-300 ${
+        className={`relative glass glass-subtle p-4 border-l-4 transition-all duration-300 ${
           step.status === 'Done' ? 'opacity-70' : 'opacity-100'
         } ${color.border}`}
       >
@@ -180,7 +180,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ step, onUpdate, onAddNote, phaseTit
           <select
               value={step.status}
               onChange={(e) => onUpdate({ status: e.target.value as TaskStatus })}
-              className={`form-select rounded-md text-sm py-1 pl-2 pr-7 border-0 focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 transition-colors ${color.bg} ${color.text} ${color.border} focus:ring-${color.border.split('-')[1]}-500`}
+              className={`form-select rounded-md text-sm py-1 pl-2 pr-7 border-0 focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 transition-colors ${color.bg} ${color.text} focus:ring-cyan-500`}
           >
               <option value="To Do">To Do</option>
               <option value="In Progress">In Progress</option>
@@ -189,7 +189,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ step, onUpdate, onAddNote, phaseTit
         </div>
         
         <div className="mb-4">
-          <label htmlFor={`agent-${step.id}`} className="flex items-center text-sm font-semibold text-slate-300 mb-1">
+          <label htmlFor={`agent-${step.id}`} className="flex items-center text-sm font-semibold text-slate-300 mb-1 uppercase tracking-wider">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" /></svg>
             <span className="ml-2">Agent</span>
           </label>
@@ -198,7 +198,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ step, onUpdate, onAddNote, phaseTit
               type="text"
               value={step.agent}
               onChange={(e) => onUpdate({ agent: e.target.value })}
-              className="w-full text-sm bg-slate-700/50 rounded-md border-slate-600 px-2 py-1 focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500"
+              className="w-full text-sm bg-slate-900/50 rounded-md border border-slate-700 px-2 py-1 focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500"
               placeholder="Assign to..."
           />
         </div>
@@ -224,8 +224,8 @@ const TaskCard: React.FC<TaskCardProps> = ({ step, onUpdate, onAddNote, phaseTit
           />
         </div>
 
-        <div className="border-t border-slate-700 pt-3">
-          <h4 className="text-sm font-semibold text-slate-300 mb-2">Sub-tasks</h4>
+        <div className="border-t border-slate-700/50 pt-3">
+          <h4 className="text-sm font-semibold text-slate-300 mb-2 uppercase tracking-wider">Sub-tasks</h4>
           <div className="space-y-2">
               {step.subTasks.map(sub => (
                   <div key={sub.id} className="flex items-center text-sm">
@@ -248,7 +248,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ step, onUpdate, onAddNote, phaseTit
                   onChange={(e) => setNewSubtask(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleAddSubtask()}
                   placeholder="Add a new sub-task..."
-                  className="flex-grow text-sm bg-slate-700/50 rounded-l-md border-slate-600 px-2 py-1 focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500"
+                  className="flex-grow text-sm bg-slate-900/50 rounded-l-md border border-slate-700 px-2 py-1 focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500"
               />
               <button
                   onClick={handleAddSubtask}

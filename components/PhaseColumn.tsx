@@ -11,8 +11,8 @@ interface PhaseColumnProps {
 
 const PhaseColumn: React.FC<PhaseColumnProps> = ({ phase, phaseIndex, onStepUpdate, onAddNote }) => {
   return (
-    <div className="flex flex-col bg-slate-800/50 rounded-lg shadow-lg">
-      <div className="p-4 border-b border-slate-700 sticky top-0 bg-slate-800/80 backdrop-blur-sm rounded-t-lg">
+    <div className="flex flex-col glass">
+      <div className="p-4 border-b border-slate-700/50 sticky top-0 bg-slate-800/50 backdrop-blur-sm rounded-t-lg">
         <h2 className="text-xl font-bold text-cyan-400">{phase.title}</h2>
       </div>
       <div className="p-4 space-y-4">
